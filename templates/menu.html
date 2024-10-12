@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex gap-2" id="category-list">
+        <input type="radio" class="btn-check" checked name="categories" id="all" data-url="{% url 'dish-list' %}" onclick="getDishList(this)">
+        <label for="all" class="btn btn-outline-primary">All</label>
+    </div>
+
+    <template id="category">
+        <input type="radio" class="btn-check" name="categories" onclick="getDishList(this)">
+        <label class="btn btn-outline-primary">
+            <img src="" alt="" width="20" height="20">
+            <span id="category-name"></span>
+        </label>
+    </template>
+
+    <div class="row row-cols-3 mt-3 g-3" id="dish-list"></div>
+
+    <template id="dish">
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header"></h5>
+                <div class="card-body">
+                    <span class="card-title badge text-bg-success"></span>
+                    <p class="card-text"></p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dishDetails">See details</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div class="modal fade" id="dishDetails" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="badge text-bg-success me-2" id="price"></span>
+                    <h1 class="modal-title fs-5">
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <img src="" alt="" id="picture">
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/menu.js' %}"></script>
+{% endblock %}
